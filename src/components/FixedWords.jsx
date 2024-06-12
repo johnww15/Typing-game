@@ -6,6 +6,7 @@ export default function FixedWords() {
   const [inputWords, setInputWords] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [initialized, setInitialized] = useState(false);
+  const [isGameover, setIsGameOver] = useState(false);
 
   // Create function to randomise and generate array of words for the game
   const getRandomWords = (array, count) => {
@@ -14,25 +15,32 @@ export default function FixedWords() {
   };
 
   const handleChange = (e) => {
+    // Exit early if game is over
+    if (isGameover) {
+      return;
+    }
+
     const value = e.target.value;
 
     if (value.endsWith(" ")) {
       if (currentIndex < inputWords.length - 1) {
-        console.log(currentIndex, "current Index");
         setCurrentIndex(currentIndex + 1);
         setInputWords([
           ...inputWords.slice(0, currentIndex),
           value.trim(),
           ...inputWords.slice(currentIndex + 1),
         ]);
+      } else {
+        setIsGameOver(true);
       }
+    } else {
+      setInputWords([
+        ...inputWords.slice(0, currentIndex),
+        value,
+        ...inputWords.slice(currentIndex + 1),
+      ]);
+      console.log(inputWords);
     }
-    setInputWords([
-      ...inputWords.slice(0, currentIndex),
-      value,
-      ...inputWords.slice(currentIndex + 1),
-    ]);
-    console.log(inputWords);
   };
 
   useEffect(() => {
