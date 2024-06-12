@@ -15,18 +15,28 @@ export default function FixedWords() {
 
   const handleChange = (e) => {
     const value = e.target.value;
+
+    if (value.endsWith(" ")) {
+      setCurrentIndex(currentIndex + 1);
+      setInputWords([
+        ...inputWords.slice(0, currentIndex),
+        value.trim(),
+        ...inputWords.slice(currentIndex + 1),
+      ]);
+    }
     setInputWords([
       ...inputWords.slice(0, currentIndex),
       value,
       ...inputWords.slice(currentIndex + 1),
     ]);
+    console.log(inputWords);
   };
 
   useEffect(() => {
     // Call the function to set the initial words
-    const initialWords = getRandomWords(MOCK_DATA, 5);
-    setFixedGameWords(initialWords);
-    setInputWords(Array(initialWords.length).fill(""));
+    const initialisedWords = getRandomWords(MOCK_DATA, 5);
+    setFixedGameWords(initialisedWords);
+    setInputWords(Array(initialisedWords.length).fill(""));
     setInitialized(true);
   }, []);
 
