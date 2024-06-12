@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 
 export default function FixedWords() {
   const [fixedGameWords, setFixedGameWords] = useState([]);
-  // inputWords state gets it's "proper" initial state from the useEffect function below
   const [inputWords, setInputWords] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [initialized, setInitialized] = useState(false);
 
   // Create function to randomise and generate array of words for the game
   const getRandomWords = (array, count) => {
@@ -15,13 +15,19 @@ export default function FixedWords() {
 
   const handleChange = (e) => {
     const value = e.target.value;
+    setInputWords([
+      ...inputWords.slice(0, currentIndex),
+      value,
+      ...inputWords.slice(currentIndex + 1),
+    ]);
   };
 
   useEffect(() => {
     // Call the function to set the initial words
-    setFixedGameWords(getRandomWords(MOCK_DATA, 5));
-    // Reset the state of InputWords with the newly randomised words
-    setInputWords(Array(fixedGameWords.length).fill(""));
+    const initialWords = getRandomWords(MOCK_DATA, 5);
+    setFixedGameWords(initialWords);
+    setInputWords(Array(initialWords.length).fill(""));
+    setInitialized(true);
   }, []);
 
   const renderFixedWords = () => {
@@ -38,9 +44,11 @@ export default function FixedWords() {
     <>
       <h1>FixedWords</h1>
       <div data-testid="fixedwords" className="fixedwords-display">
-        {renderFixedWords()}
+        {initialized && renderFixedWords()}
       </div>
-      <textarea value={inputWords[currentIndex]} onChange={handleChange} />
+      {initialized && (
+        <textarea value={inputWords[currentIndex]} onChange={handleChange} />
+      )}
     </>
   );
 }
