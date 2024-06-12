@@ -17,12 +17,15 @@ export default function FixedWords() {
     const value = e.target.value;
 
     if (value.endsWith(" ")) {
-      setCurrentIndex(currentIndex + 1);
-      setInputWords([
-        ...inputWords.slice(0, currentIndex),
-        value.trim(),
-        ...inputWords.slice(currentIndex + 1),
-      ]);
+      if (currentIndex < inputWords.length - 1) {
+        console.log(currentIndex, "current Index");
+        setCurrentIndex(currentIndex + 1);
+        setInputWords([
+          ...inputWords.slice(0, currentIndex),
+          value.trim(),
+          ...inputWords.slice(currentIndex + 1),
+        ]);
+      }
     }
     setInputWords([
       ...inputWords.slice(0, currentIndex),
