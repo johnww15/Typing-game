@@ -55,7 +55,19 @@ export default function FixedWords() {
     return fixedGameWords.map((word, index) => (
       <div key={index} className="fixed-game-word">
         {word.split("").map((char, charIndex) => {
-          return <span key={charIndex}>{char}</span>;
+          let color = "";
+          if (
+            index < currentIndex ||
+            (index === currentIndex && charIndex < inputWords[index].length)
+          ) {
+            color =
+              char === inputWords[index][charIndex] ? "correct" : "incorrect";
+          }
+          return (
+            <span key={charIndex} className={color}>
+              {char}
+            </span>
+          );
         })}
       </div>
     ));
