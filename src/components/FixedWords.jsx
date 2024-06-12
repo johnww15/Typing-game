@@ -24,13 +24,23 @@ export default function FixedWords() {
     setInputWords(Array(fixedGameWords.length).fill(""));
   }, []);
 
+  const renderFixedWords = () => {
+    return fixedGameWords.map((word, index) => (
+      <div key={index} className="fixed-game-word">
+        {word.split("").map((char, charIndex) => {
+          return <span key={charIndex}>{char}</span>;
+        })}
+      </div>
+    ));
+  };
+
   return (
     <>
       <h1>FixedWords</h1>
-      <div>
-        <p data-testid="fixedwords">{fixedGameWords.join(" ")}</p>
-        <textarea value={inputWords[currentIndex]} onChange={handleChange} />
+      <div data-testid="fixedwords" className="fixedwords-display">
+        {renderFixedWords()}
       </div>
+      <textarea value={inputWords[currentIndex]} onChange={handleChange} />
     </>
   );
 }
