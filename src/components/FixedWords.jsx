@@ -8,6 +8,8 @@ export default function FixedWords() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [initialized, setInitialized] = useState(false);
   const [isGameover, setIsGameOver] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
 
   // Create function to randomise and generate array of words for the game
   const getRandomWords = (array, count) => {
@@ -19,6 +21,9 @@ export default function FixedWords() {
     // Exit early if game is over
     if (isGameover) {
       return;
+    }
+    if (!startTime) {
+      setStartTime(Date.now);
     }
 
     const value = e.target.value;
@@ -33,6 +38,7 @@ export default function FixedWords() {
         ]);
       } else {
         setIsGameOver(true);
+        setEndTime(Date.now());
       }
     } else {
       setInputWords([
@@ -51,6 +57,8 @@ export default function FixedWords() {
     setInputWords(Array(initialisedWords.length).fill(""));
     setCurrentIndex(0);
     setInitialized(true);
+    setStartTime(null);
+    setEndTime(null);
   }, [initialized]);
 
   const renderFixedWords = () => {
@@ -91,6 +99,9 @@ export default function FixedWords() {
         <EndScreen
           setIsGameOver={setIsGameOver}
           setInitialized={setInitialized}
+          endTime={endTime}
+          startTime={startTime}
+          wordCount={inputWords.length}
         />
       )}
     </>
