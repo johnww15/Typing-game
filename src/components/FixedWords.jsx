@@ -22,11 +22,11 @@ export default function FixedWords() {
     if (isGameover) {
       return;
     }
-    if (!startTime) {
+    const value = e.target.value;
+
+    if (!startTime && value) {
       setStartTime(Date.now);
     }
-
-    const value = e.target.value;
 
     if (value.endsWith(" ")) {
       if (currentIndex < inputWords.length - 1) {
