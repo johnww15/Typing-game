@@ -1,12 +1,10 @@
 export default function EndScreen({
-  setIsGameOver,
   setInitialized,
   startTime,
   endTime,
   wordCount,
 }) {
   const handleTryAgainButton = () => {
-    setIsGameOver(false);
     setInitialized(false);
   };
 

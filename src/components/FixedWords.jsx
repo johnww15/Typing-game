@@ -14,7 +14,7 @@ export default function FixedWords() {
   // Create function to randomise and generate array of words for the game
   const getRandomWords = (array, count) => {
     const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
-    return shuffledArray.slice(0, Math.min(count, shuffledArray.length));
+    return shuffledArray.slice(0, Math.min(count, shuffledArray.length)); //in case array.length is less than count
   };
 
   const handleTextAreaChange = (e) => {
@@ -24,6 +24,7 @@ export default function FixedWords() {
     }
     const value = e.target.value;
 
+    //start time is only set when user types and not when they select the text area
     if (!startTime && value) {
       setStartTime(Date.now);
     }
@@ -59,6 +60,7 @@ export default function FixedWords() {
     setInitialized(true);
     setStartTime(null);
     setEndTime(null);
+    setIsGameOver(false);
   }, [initialized]);
 
   const renderFixedWords = () => {
@@ -97,7 +99,6 @@ export default function FixedWords() {
       )}
       {isGameover && (
         <EndScreen
-          setIsGameOver={setIsGameOver}
           setInitialized={setInitialized}
           endTime={endTime}
           startTime={startTime}
