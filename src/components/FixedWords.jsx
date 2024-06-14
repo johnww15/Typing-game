@@ -1,5 +1,6 @@
 import { MOCK_DATA } from "../data/MockData";
 import { useState, useEffect } from "react";
+import EndScreen from "./EndScreen";
 
 export default function FixedWords() {
   const [fixedGameWords, setFixedGameWords] = useState([]);
@@ -14,7 +15,7 @@ export default function FixedWords() {
     return shuffledArray.slice(0, Math.min(count, shuffledArray.length));
   };
 
-  const handleChange = (e) => {
+  const handleTextAreaChange = (e) => {
     // Exit early if game is over
     if (isGameover) {
       return;
@@ -48,8 +49,9 @@ export default function FixedWords() {
     const initialisedWords = getRandomWords(MOCK_DATA, 5);
     setFixedGameWords(initialisedWords);
     setInputWords(Array(initialisedWords.length).fill(""));
+    setCurrentIndex(0);
     setInitialized(true);
-  }, []);
+  }, [initialized]);
 
   const renderFixedWords = () => {
     return fixedGameWords.map((word, index) => (
@@ -80,7 +82,16 @@ export default function FixedWords() {
         {initialized && renderFixedWords()}
       </div>
       {initialized && (
-        <textarea value={inputWords[currentIndex]} onChange={handleChange} />
+        <textarea
+          value={inputWords[currentIndex]}
+          onChange={handleTextAreaChange}
+        />
+      )}
+      {isGameover && (
+        <EndScreen
+          setIsGameOver={setIsGameOver}
+          setInitialized={setInitialized}
+        />
       )}
     </>
   );

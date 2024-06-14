@@ -1,8 +1,13 @@
-export default function EndScreen() {
+export default function EndScreen({ setIsGameOver, setInitialized }) {
+  const handleTryAgainButton = () => {
+    setIsGameOver(false);
+    setInitialized(false);
+  };
+
   return (
     <div>
       <p>WPM : placeholder WPM</p>
-      <button>Try Again</button>
+      <button onClick={handleTryAgainButton}>Try Again</button>
     </div>
   );
 }
