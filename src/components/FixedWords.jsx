@@ -47,7 +47,6 @@ export default function FixedWords() {
         value,
         ...inputWords.slice(currentIndex + 1),
       ]);
-      console.log(inputWords);
     }
   };
 
@@ -87,7 +86,8 @@ export default function FixedWords() {
 
   return (
     <>
-      <h1>Fixed Words Game Mode</h1>
+      <h1>Typing Game</h1>
+      <p>Press "spacebar" after submitting each word</p>
       <div data-testid="fixedwords" className="fixedwords-display">
         {initialized && renderFixedWords()}
       </div>
