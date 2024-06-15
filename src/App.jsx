@@ -7,7 +7,6 @@ export default function App() {
   return (
     <>
       <div>
-        <h1>Typing Game</h1>
         <Game />
         <Input />
       </div>

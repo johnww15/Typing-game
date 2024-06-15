@@ -87,7 +87,7 @@ export default function FixedWords() {
 
   return (
     <>
-      <h1>FixedWords</h1>
+      <h1>Fixed Words Game Mode</h1>
       <div data-testid="fixedwords" className="fixedwords-display">
         {initialized && renderFixedWords()}
       </div>
