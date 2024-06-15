@@ -53,7 +53,7 @@ export default function FixedWords() {
 
   useEffect(() => {
     // Call the function to set the initial words
-    const initialisedWords = getRandomWords(MOCK_DATA, 5);
+    const initialisedWords = getRandomWords(MOCK_DATA, 40);
     setFixedGameWords(initialisedWords);
     setInputWords(Array(initialisedWords.length).fill(""));
     setCurrentIndex(0);
@@ -65,7 +65,7 @@ export default function FixedWords() {
 
   const renderFixedWords = () => {
     return fixedGameWords.map((word, index) => (
-      <div key={index} className="fixed-game-word">
+      <div key={index} className="fixedwords-word">
         {word.split("").map((char, charIndex) => {
           let color = "";
           if (
