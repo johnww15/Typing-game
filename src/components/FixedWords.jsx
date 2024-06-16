@@ -52,7 +52,7 @@ export default function FixedWords() {
 
   useEffect(() => {
     // Call the function to set the initial words
-    const initialisedWords = getRandomWords(MOCK_DATA, 40);
+    const initialisedWords = getRandomWords(MOCK_DATA, 20);
     setFixedGameWords(initialisedWords);
     setInputWords(Array(initialisedWords.length).fill(""));
     setCurrentIndex(0);
