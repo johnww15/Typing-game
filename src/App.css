@@ -35,3 +35,17 @@
   padding: 10px;
   box-sizing: border-box;
 }
+
+.caret {
+  display: inline-block;
+  background-color: white;
+  color:transparent;
+  width: 1px;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    background-color: transparent;
+  }
+}
