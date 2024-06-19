@@ -1,4 +1,4 @@
-export const MOCK_DATA = [
+export const EASY_DATA = [
   "cat",
   "dog",
   "bat",

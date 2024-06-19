@@ -2,7 +2,6 @@ export default function EndScreen({
   setInitialized,
   startTime,
   endTime,
-  wordCount,
   fixedGameWords,
   inputWords,
 }) {

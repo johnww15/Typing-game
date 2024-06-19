@@ -6,6 +6,10 @@ export default function App() {
   return (
     <>
       <div>
+        <h1>Typing Game</h1>
+        <button>easy</button>
+        <button>medium</button>
+        <button>hard</button>
         <Game />
       </div>
     </>
