@@ -4,6 +4,8 @@
 
 Created a simple typing test application which randomly generates words from an existing fixed data file. Users will then attempt to type the correct words into the text area as fast as they can. When complete, the applications calculate the number of correct words types per minute. The user is also given the option to choose their level of difficulty when attempting the game.
 
+![Screenshot of the game](https://github.com/johnww15/Typing-game/blob/main/public/typinggame.png?raw=true)
+
 ## Technologies & Tools used
 
 - HTML
