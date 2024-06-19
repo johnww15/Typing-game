@@ -1,5 +1,6 @@
 import { EASY_DATA } from "../data/EasyData";
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import { GameSettingsContext } from "../context/GameSettings";
 import EndScreen from "./EndScreen";
 
 export default function FixedWords() {
@@ -11,6 +12,7 @@ export default function FixedWords() {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [caretPosition, setCaretPosition] = useState(0);
+  const { gameSettings } = useContext(GameSettingsContext);
 
   // Create function to randomise and generate array of words for the game
   const getRandomWords = (array, count) => {
@@ -56,7 +58,10 @@ export default function FixedWords() {
 
   useEffect(() => {
     // Call the function to set the initial words
-    const initialisedWords = getRandomWords(EASY_DATA, 20);
+    const initialisedWords = getRandomWords(
+      gameSettings.data,
+      gameSettings.wordCount
+    );
     setFixedGameWords(initialisedWords);
     setInputWords(Array(initialisedWords.length).fill(""));
     setCurrentIndex(0);
@@ -65,7 +70,7 @@ export default function FixedWords() {
     setStartTime(null);
     setEndTime(null);
     setIsGameOver(false);
-  }, [initialized]);
+  }, [initialized, gameSettings]);
 
   const renderFixedWords = () => {
     return fixedGameWords.map((word, index) => (

@@ -31,11 +31,11 @@ const CHAOS_SETTINGS = {
   data: CHAOS_DATA,
 };
 
-const DEFAULT_SETTINGS = {
-  difficulty: "mock",
-  wordCount: 10,
-  data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-};
+// const DEFAULT_SETTINGS = {
+//   difficulty: "mock",
+//   wordCount: 10,
+//   data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+// };
 
 const changeStateByDifficulty = (difficulty) => {
   switch (difficulty) {
@@ -48,12 +48,12 @@ const changeStateByDifficulty = (difficulty) => {
     case "chaos":
       return CHAOS_SETTINGS;
     default:
-      return DEFAULT_SETTINGS;
+      return EASY_SETTINGS;
   }
 };
 
 export const GameSettingsProvider = ({ children }) => {
-  const [gameSettings, setGameSettings] = useState(DEFAULT_SETTINGS);
+  const [gameSettings, setGameSettings] = useState(EASY_SETTINGS);
 
   const changeDifficulty = (difficulty) => {
     const newSettings = changeStateByDifficulty(difficulty);
