@@ -31,12 +31,6 @@ const CHAOS_SETTINGS = {
   data: CHAOS_DATA,
 };
 
-// const DEFAULT_SETTINGS = {
-//   difficulty: "mock",
-//   wordCount: 10,
-//   data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-// };
-
 const changeStateByDifficulty = (difficulty) => {
   switch (difficulty) {
     case "easy":

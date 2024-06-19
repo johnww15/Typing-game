@@ -1,16 +1,37 @@
 import React, { useContext } from "react";
 import { GameSettingsContext } from "../context/GameSettings";
 
-export default function DifficultyButtons() {
-  const { changeDifficulty, gameSettings } = useContext(GameSettingsContext);
+const DifficultyButtons = () => {
+  const { gameSettings, changeDifficulty } = useContext(GameSettingsContext);
 
   return (
-    <div>
-      <button onClick={() => changeDifficulty("easy")}>Easy</button>
-      <button onClick={() => changeDifficulty("medium")}>Medium</button>
-      <button onClick={() => changeDifficulty("hard")}>Hard</button>
-      <button onClick={() => changeDifficulty("chaos")}>Absolute Chaos</button>
-      <p>current difficulty: {gameSettings.difficulty}</p>
+    <div className="difficulty-buttons">
+      <button
+        className={gameSettings.difficulty === "easy" ? "active" : ""}
+        onClick={() => changeDifficulty("easy")}
+      >
+        Easy
+      </button>
+      <button
+        className={gameSettings.difficulty === "medium" ? "active" : ""}
+        onClick={() => changeDifficulty("medium")}
+      >
+        Medium
+      </button>
+      <button
+        className={gameSettings.difficulty === "hard" ? "active" : ""}
+        onClick={() => changeDifficulty("hard")}
+      >
+        Hard
+      </button>
+      <button
+        className={gameSettings.difficulty === "chaos" ? "active" : ""}
+        onClick={() => changeDifficulty("chaos")}
+      >
+        Absolute Chaos
+      </button>
     </div>
   );
-}
+};
+
+export default DifficultyButtons;
