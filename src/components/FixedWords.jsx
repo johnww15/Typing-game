@@ -10,6 +10,7 @@ export default function FixedWords() {
   const [isGameover, setIsGameOver] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
+  const [caretPosition, setCaretPosition] = useState(0);
 
   // Create function to randomise and generate array of words for the game
   const getRandomWords = (array, count) => {
@@ -23,6 +24,7 @@ export default function FixedWords() {
       return;
     }
     const value = e.target.value;
+    const position = e.target.selectionStart;
 
     //start time is only set when user types and not when they select the text area
     if (!startTime && value) {
@@ -32,6 +34,7 @@ export default function FixedWords() {
     if (value.endsWith(" ")) {
       if (currentIndex < inputWords.length - 1) {
         setCurrentIndex(currentIndex + 1);
+        setCaretPosition(0); //Reset caret position when new word starts
         setInputWords([
           ...inputWords.slice(0, currentIndex),
           value.trim(),
@@ -47,6 +50,7 @@ export default function FixedWords() {
         value,
         ...inputWords.slice(currentIndex + 1),
       ]);
+      setCaretPosition(position);
     }
   };
 
@@ -56,6 +60,7 @@ export default function FixedWords() {
     setFixedGameWords(initialisedWords);
     setInputWords(Array(initialisedWords.length).fill(""));
     setCurrentIndex(0);
+    setCaretPosition(0);
     setInitialized(true);
     setStartTime(null);
     setEndTime(null);
@@ -76,10 +81,16 @@ export default function FixedWords() {
           }
           return (
             <span key={charIndex} className={color}>
+              {index === currentIndex && charIndex === caretPosition && (
+                <span className="caret">|</span> // Add caret here
+              )}
               {char}
             </span>
           );
         })}
+        {index === currentIndex && caretPosition === word.length && (
+          <span className="caret">|</span> // Add caret at the end of the word
+        )}
       </div>
     ));
   };
