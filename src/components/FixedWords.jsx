@@ -113,6 +113,8 @@ export default function FixedWords() {
           setInitialized={setInitialized}
           endTime={endTime}
           startTime={startTime}
+          fixedGameWords={fixedGameWords}
+          inputWords={inputWords}
           wordCount={inputWords.length}
         />
       )}
