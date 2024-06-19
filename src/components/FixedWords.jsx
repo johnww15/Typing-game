@@ -87,7 +87,7 @@ export default function FixedWords() {
           return (
             <span key={charIndex} className={color}>
               {index === currentIndex && charIndex === caretPosition && (
-                <span className="caret">|</span> // Add caret here
+                <span className="caret">|</span>
               )}
               {char}
             </span>
