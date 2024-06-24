@@ -14,6 +14,7 @@ Created a simple typing test application which randomly generates words from an 
 - ReactJS
 - Vite
 - Git, Github
+- Vercel (https://typing-game-snowy.vercel.app/)
 
 ## Main Learning Objectives
 
